@@ -1,5 +1,6 @@
 package com.mobei.es.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.DateFormat;
@@ -20,6 +21,7 @@ public class Emp {
     @Field(type = FieldType.Integer)
     private Integer age;
     @Field(type = FieldType.Date, format = DateFormat.date_hour_minute_second)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date bir;
     @Field(type = FieldType.Text)
     private String content;
