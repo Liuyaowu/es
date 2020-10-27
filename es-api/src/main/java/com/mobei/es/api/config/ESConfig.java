@@ -14,7 +14,7 @@ public class ESConfig {
         RestHighLevelClient client = new RestHighLevelClient(
                 //如果是集群就配多个
                 RestClient.builder(
-                        new HttpHost("localhost", 9200, "http")/*,
+                        new HttpHost("192.168.222.4", 9200, "http")/*,
                         new HttpHost("localhost", 9201, "http")*/));
         return client;
     }
