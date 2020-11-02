@@ -8,10 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Sort;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @SpringBootTest
 class TestsRepository {
@@ -40,6 +37,31 @@ class TestsRepository {
         emp.setAge(25);
         emp.setAddress("CSC");
         emp.setContent("HELLO");
+        empRespository.save(emp);
+    }
+
+    @Test
+    void testSave22() throws IOException {
+        Emp emp = new Emp();
+//        emp.setId(UUID.randomUUID().toString());
+//        emp.setName("张四丰");
+//        emp.setBir(new Date());
+//        emp.setAge(25);
+//        emp.setAddress("CSC");
+//        emp.setContent("HELLO");
+        Emp.DD d1 = new Emp.DD();
+        d1.setId("d1");
+        d1.setDName("dName1");
+        d1.setDAge("1");
+        Emp.DD d2 = new Emp.DD();
+        d2.setId("d2");
+        d2.setDName("dName2");
+        d2.setDAge("2");
+        List<Emp.DD> dds = new ArrayList<>();
+        dds.add(d1);
+        dds.add(d2);
+        emp.setDdList(dds);
+
         empRespository.save(emp);
     }
 
@@ -74,7 +96,15 @@ class TestsRepository {
     @Test
     void testFindOne() throws IOException {
         Optional<Emp> byId = empRespository.findById("e8b080e8-27a0-4504-9457-c1bb7fb0d263");
-        System.out.println(byId.get());
+        if (byId.isPresent()) {
+            System.out.println(byId.get());
+        }
+    }
+
+    @Test
+    void testFindBy() throws IOException {
+        List<Emp> empList = empRespository.findByName("张四丰");
+        System.out.println(empList);
     }
 
     @Test
